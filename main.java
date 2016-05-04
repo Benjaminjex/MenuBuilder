@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class main here.
  * 
@@ -10,8 +9,8 @@ public class main
     // instance variables - replace the example below with your own
     boolean done1 = false, done2 = false, done3 = false, done4 = false, done5 = false;
     boolean finished = false;
-    int meals = 0, mealsListSize = 4;
-    String mealsList[];
+    int meals = 0, mealsListSize = 4, menuSize = 3;//remove size of menuSize later
+    String mealsList[], menu[], breakMain[], breakSide[], lunchMain[], lunchSide[], snacks[], dinnerMain[], dinnerSide[], dinnerDesert[];
 
     public main()
     {
@@ -19,15 +18,17 @@ public class main
         //constructor
         while(!done1)
         {
-            init_Meals_List();
+            init_Meals_Lists();
+            cl();
             pickO1(meals);
-            /*while (!done2)
+            while (!done2)
             {
                 if (meals == 1)//breakfast
                 {
+                    cl();
                     while (!done3)
                     {
-                        randomize(breakMain);
+                        randomize(breakMain[]);
                         pick(breakMain);
                         while (!done4)
                         {
@@ -47,6 +48,7 @@ public class main
                 }
                 else if (meals == 2)//lunch
                 {
+                    cl();
                     while (!done3)
                     {
                         randomize(lunchMain);
@@ -69,6 +71,7 @@ public class main
                 }
                 else if (meals == 3)//snacks
                 {
+                    cl();
                     while (!done3)
                     {
                         randomize(snacks);
@@ -82,6 +85,7 @@ public class main
                 }
                 else if (meals == 4)//dinner
                 {
+                    cl();
                     while (!done3)
                     {
                         randomize(dinnerMain);
@@ -118,30 +122,44 @@ public class main
                     }
                 }
             }
-            displayMenu();*/
+            cl();
+            displayMenu();
         }
     }
 
-    public void init_Meals_List()
+    public void cl() {output("\u000c");}
+    
+    public void init_Meals_Lists()//dont forget to add ways to add to lists within program
     {
         mealsList = new String[] {"Breakfast", "Lunch", "Snacks", "Dinner"};
+        menu = new String[] {"test1", "test2", "test3"};//remove later
+        breakMain = new String[] {"Cereal", "Oatmeal", "French Toast", "Waffles", "Yogurt"};
+        breakSide = new String[] {"Smoothie", "Eggs", "Orange Juice", "Sausage", "Bagels"};
+        lunchMain = new String[] {"Meat Sandwich", "Ramen Noodles", "Burger", "Tacos", "Enchilladas"};
+        lunchSide = new String[] {"Lemonade", "Salad", "Cucumber", "Tomato", "Crackers"};
+        snacks = new String[] {"Pudding", "Pretzels", "Salami", "Granola Bars", "Cookies"};
+        dinnerMain = new String[] {"Spaghetti","Pizza","Burritos","Burgers","Polish Dogs"};
+        dinnerSide = new String[] {"Fries","Rice","Corn","Peas","Asparagus"}
+        dinnerDesert = new String[] {"Ice Cream","Cake","Cookies","Pie","Lemon Bar"};
     }
     
-    /*public void displayMenu()
+    public void displayMenu()
     {
         for (int i = 0; i < menuSize; i++)
         {
-            print(menu[i]);
+            System.out.println("\n" + menu[i]);
         }
-    }*/
+        input("\nPress <return> to continue.");
+    }
     
     public int pickO1(int meals)
     {
         for(int i = 0; i < mealsListSize; i++)
         {
-            print("\n\nOption " + (i+1) + "is " + meals[i]);
+            System.out.println("\nOption " + (i+1) + " is " + mealsList[i]);
         }
-        meals = inputInt("Enter your option: ");
+        meals = inputInt("\n\nEnter your option: ");
+        return meals;
     }
     
     
