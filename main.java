@@ -9,8 +9,9 @@ public class main
     // instance variables - replace the example below with your own
     boolean done1 = false, done2 = false, done3 = false, done4 = false, done5 = false;
     boolean finished = false;
-    int meals = 0, mealsListSize = 4, menuSize = 3;//remove size of menuSize later
-    String mealsList[], menu[], breakMain[], breakSide[], lunchMain[], lunchSide[], snacks[], dinnerMain[], dinnerSide[], dinnerDesert[];
+    int mealsListSize = 4, menuSize = 3;//remove size of menuSize later
+    int meals = 0, breakMain, breakSide, lunchMain, lunchSide, snacks, dinnerMain, dinnerSide, dinnerDesert;
+    String mealsList[], menuList[], breakMainList[], breakSideList[], lunchMainList[], lunchSideList[], snacksList[], dinnerMainList[], dinnerSideList[], dinnerDesertList[];
 
     public main()
     {
@@ -28,7 +29,7 @@ public class main
                     cl();
                     while (!done3)
                     {
-                        randomize(breakMain[]);
+                        //randomize(breakMainList[]);
                         pick(breakMain);
                         while (!done4)
                         {
@@ -40,7 +41,7 @@ public class main
                             }
                             else
                             {
-                                randomize(breakSide);
+                                //randomize(breakSideList[]);
                                 pick(breakSide);
                             }
                         }
@@ -51,7 +52,7 @@ public class main
                     cl();
                     while (!done3)
                     {
-                        randomize(lunchMain);
+                        //randomize(lunchMainList[]);
                         pick(lunchMain);
                         while (!done4)
                         {
@@ -63,7 +64,7 @@ public class main
                             }
                             else
                             {
-                                randomize(lunchSide);
+                                //randomize(lunchSideList[]);
                                 pick(lunchSide);
                             }
                         }
@@ -74,7 +75,7 @@ public class main
                     cl();
                     while (!done3)
                     {
-                        randomize(snacks);
+                        //randomize(snacksList[]);
                         pick(snacks);
                         if (finished == true)
                         {
@@ -88,7 +89,7 @@ public class main
                     cl();
                     while (!done3)
                     {
-                        randomize(dinnerMain);
+                        //randomize(dinnerMainList[]);
                         pick(dinnerMain);
                         while (!done4)
                         {
@@ -100,7 +101,7 @@ public class main
                             }
                             else
                             {
-                                randomize(dinnerSide);
+                                //randomize(dinnerSideList[]);
                                 pick(dinnerSide);
                                 while (!done5)
                                 {
@@ -113,7 +114,7 @@ public class main
                                     }
                                     else
                                     {
-                                        randomize(dinnerDesert);
+                                        //randomize(dinnerDesertList[]);
                                         pick(dinnerDesert);
                                     }
                                 }
@@ -126,32 +127,25 @@ public class main
             displayMenu();
         }
     }
-
-    public void cl() {output("\u000c");}
     
     public void init_Meals_Lists()//dont forget to add ways to add to lists within program
     {
         mealsList = new String[] {"Breakfast", "Lunch", "Snacks", "Dinner"};
-        menu = new String[] {"test1", "test2", "test3"};//remove later
-        breakMain = new String[] {"Cereal", "Oatmeal", "French Toast", "Waffles", "Yogurt"};
-        breakSide = new String[] {"Smoothie", "Eggs", "Orange Juice", "Sausage", "Bagels"};
-        lunchMain = new String[] {"Meat Sandwich", "Ramen Noodles", "Burger", "Tacos", "Enchilladas"};
-        lunchSide = new String[] {"Lemonade", "Salad", "Cucumber", "Tomato", "Crackers"};
-        snacks = new String[] {"Pudding", "Pretzels", "Salami", "Granola Bars", "Cookies"};
-        dinnerMain = new String[] {"Spaghetti","Pizza","Burritos","Burgers","Polish Dogs"};
-        dinnerSide = new String[] {"Fries","Rice","Corn","Peas","Asparagus"}
-        dinnerDesert = new String[] {"Ice Cream","Cake","Cookies","Pie","Lemon Bar"};
+        menuList = new String[] {"test1", "test2", "test3"};//remove later
+        breakMainList = new String[] {"Cereal", "Oatmeal", "French Toast", "Waffles", "Yogurt"};
+        breakSideList = new String[] {"Smoothie", "Eggs", "Orange Juice", "Sausage", "Bagels"};
+        lunchMainList = new String[] {"Meat Sandwich", "Ramen Noodles", "Burger", "Tacos", "Enchilladas"};
+        lunchSideList = new String[] {"Lemonade", "Salad", "Cucumber", "Tomato", "Crackers"};
+        snacksList = new String[] {"Pudding", "Pretzels", "Salami", "Granola Bars", "Cookies"};
+        dinnerMainList = new String[] {"Spaghetti","Pizza","Burritos","Burgers","Polish Dogs"};
+        dinnerSideList = new String[] {"Fries","Rice","Corn","Peas","Asparagus"};
+        dinnerDesertList = new String[] {"Ice Cream","Cake","Cookies","Pie","Lemon Bar"};
     }
     
-    public void displayMenu()
-    {
-        for (int i = 0; i < menuSize; i++)
-        {
-            System.out.println("\n" + menu[i]);
-        }
-        input("\nPress <return> to continue.");
-    }
-    
+    //--------------- Functions
+    public void cl() {output("\u000c");}
+
+    //--------------- Methods
     public int pickO1(int meals)
     {
         for(int i = 0; i < mealsListSize; i++)
@@ -162,7 +156,20 @@ public class main
         return meals;
     }
     
+    public int pick(int menuItem)
+    {
+        
+    }
     
+    
+    public void displayMenu()
+    {
+        for (int i = 0; i < menuSize; i++)
+        {
+            System.out.println("\n" + menuList[i]);
+        }
+        input("\nPress <return> to continue.");
+    }
     
     
     
