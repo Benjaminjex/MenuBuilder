@@ -8,9 +8,11 @@ public class main
 {
     // instance variables - replace the example below with your own
     boolean done1 = false, done2 = false, done3 = false, done4 = false, done5 = false;
+    boolean donePick1 = false;
     boolean finished = false;
     int mealsListSize = 4, menuSize = 3;//remove size of menuSize later
-    int meals = 0, breakMain, breakSide, lunchMain, lunchSide, snacks, dinnerMain, dinnerSide, dinnerDesert;
+    int meals = 0;
+    String breakMain, breakSide, lunchMain, lunchSide, snacks, dinnerMain, dinnerSide, dinnerDesert;
     String mealsList[], menuList[], breakMainList[], breakSideList[], lunchMainList[], lunchSideList[], snacksList[], dinnerMainList[], dinnerSideList[], dinnerDesertList[];
 
     public main()
@@ -21,7 +23,8 @@ public class main
         {
             init_Meals_Lists();
             cl();
-            pickO1(meals);
+            pickO1();
+            cl();//leaves here, why infinite loop?
             while (!done2)
             {
                 if (meals == 1)//breakfast
@@ -30,7 +33,7 @@ public class main
                     while (!done3)
                     {
                         //randomize(breakMainList[]);
-                        pick(breakMain);
+                        pickBreakMain();
                         while (!done4)
                         {
                             if (finished == true)
@@ -42,7 +45,7 @@ public class main
                             else
                             {
                                 //randomize(breakSideList[]);
-                                pick(breakSide);
+                                pickBreakSide();
                             }
                         }
                     }
@@ -53,7 +56,7 @@ public class main
                     while (!done3)
                     {
                         //randomize(lunchMainList[]);
-                        pick(lunchMain);
+                        pickLunchMain();
                         while (!done4)
                         {
                             if (finished == true)
@@ -65,7 +68,7 @@ public class main
                             else
                             {
                                 //randomize(lunchSideList[]);
-                                pick(lunchSide);
+                                pickLunchSide();
                             }
                         }
                     }
@@ -76,7 +79,7 @@ public class main
                     while (!done3)
                     {
                         //randomize(snacksList[]);
-                        pick(snacks);
+                        pickSnacks();
                         if (finished == true)
                         {
                             done3 = true;
@@ -90,7 +93,7 @@ public class main
                     while (!done3)
                     {
                         //randomize(dinnerMainList[]);
-                        pick(dinnerMain);
+                        pickDinnerMain();
                         while (!done4)
                         {
                             if (finished == true)
@@ -102,7 +105,7 @@ public class main
                             else
                             {
                                 //randomize(dinnerSideList[]);
-                                pick(dinnerSide);
+                                pickDinnerSide();
                                 while (!done5)
                                 {
                                     if (finished == true)
@@ -115,7 +118,7 @@ public class main
                                     else
                                     {
                                         //randomize(dinnerDesertList[]);
-                                        pick(dinnerDesert);
+                                        pickDinnerDesert();
                                     }
                                 }
                             }
@@ -146,21 +149,184 @@ public class main
     public void cl() {output("\u000c");}
 
     //--------------- Methods
-    public int pickO1(int meals)
+    public void pickO1()
     {
         for(int i = 0; i < mealsListSize; i++)
         {
             System.out.println("\nOption " + (i+1) + " is " + mealsList[i]);
         }
-        meals = inputInt("\n\nEnter your option: ");
-        return meals;
+        int meals = inputInt("\n\nEnter your option: ");
+        input("\nYou chose option " + meals + " as your meal. Press <return> to continue");
     }
     
-    public int pick(int menuItem)
+    public void pickBreakMain()
     {
-        
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+                    breakSide = breakMainList[i];
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
     }
-    
+    public void pickBreakSide()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
+    public void pickLunchMain()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
+    public void pickLunchSide()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
+    public void pickSnacks()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
+    public void pickDinnerMain()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
+    public void pickDinnerSide()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
+    public void pickDinnerDesert()
+    {
+        while (!donePick1)
+        {
+            int optionsLeft = 4;
+            String choice;
+            for (int i = 0; i < 5; i++)
+            {
+                cl();
+                System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
+                System.out.println("\n\n" + breakMainList[i]);
+                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                if(choice.equalsIgnoreCase("Y"))
+                {
+
+                    donePick1 = true;
+                }
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+            }
+        }
+    }
     
     public void displayMenu()
     {
