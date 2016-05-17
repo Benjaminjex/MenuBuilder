@@ -22,9 +22,9 @@ public class main
         while(!done1)
         {
             init_Meals_Lists();
+            init_values_again();
             cl();
             pickO1();
-            cl();//leaves here, why infinite loop?
             while (!done2)
             {
                 if (meals == 1)//breakfast
@@ -147,6 +147,24 @@ public class main
     
     //--------------- Functions
     public void cl() {output("\u000c");}
+    public void doneYet()
+    {
+        boolean doneYet1 = false;
+        String choice;
+        while(!doneYet1)
+        {
+            choice = input("Would  you like to add another dish to your meal? \ty/n: ");
+            if (choice.equalsIgnoreCase("Y"))
+            {
+                doneYet1 = true;
+            }
+            else if (choice.equalsIgnoreCase("N"))
+            {
+                doneYet1 = true;
+                finished = true;                
+            }
+        }
+    }
 
     //--------------- Methods
     public void pickO1()
@@ -155,7 +173,7 @@ public class main
         {
             System.out.println("\nOption " + (i+1) + " is " + mealsList[i]);
         }
-        int meals = inputInt("\n\nEnter your option: ");
+        meals = inputInt("\n\nEnter your option: ");
         input("\nYou chose option " + meals + " as your meal. Press <return> to continue");
     }
     
@@ -170,13 +188,23 @@ public class main
                 cl();
                 System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
                 System.out.println("\n\n" + breakMainList[i]);
-                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                choice = input("\n\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-                    breakSide = breakMainList[i];
+                    breakMain = breakMainList[i];
+                    donePick1 = true;
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    breakMain = breakMainList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + breakMain + " for breakfast. \n\nPress <return> to continue.");
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;
             }
         }
     }
@@ -190,14 +218,24 @@ public class main
             {
                 cl();
                 System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
-                System.out.println("\n\n" + breakMainList[i]);
+                System.out.println("\n\n" + breakSideList[i]);
                 choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    breakSide = breakSideList[i];
+                    donePick1 = true;
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    breakSide = breakSideList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + breakSide + " for breakfast. \n\nPress <return> to continue.");
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;
             }
         }
     }
@@ -338,7 +376,12 @@ public class main
     }
     
     
-    
+    public void init_values_again()
+    {
+        done1 = false; done2 = false; done3 = false; done4 = false; done5 = false;
+        donePick1 = false;
+        finished = false;
+    }
     
     
     
