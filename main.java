@@ -10,7 +10,7 @@ public class main
     boolean done1 = false, done2 = false, done3 = false, done4 = false, done5 = false;
     boolean donePick1 = false;
     boolean finished = false;
-    int mealsListSize = 4, menuSize = 3;//remove size of menuSize later
+    int mealsListSize = 4, menuSize = 0;
     int meals = 0;
     String breakMain, breakSide, lunchMain, lunchSide, snacks, dinnerMain, dinnerSide, dinnerDesert;
     String mealsList[], menuList[], breakMainList[], breakSideList[], lunchMainList[], lunchSideList[], snacksList[], dinnerMainList[], dinnerSideList[], dinnerDesertList[];
@@ -134,7 +134,6 @@ public class main
     public void init_Meals_Lists()//dont forget to add ways to add to lists within program
     {
         mealsList = new String[] {"Breakfast", "Lunch", "Snacks", "Dinner"};
-        menuList = new String[] {"test1", "test2", "test3"};//remove later
         breakMainList = new String[] {"Cereal", "Oatmeal", "French Toast", "Waffles", "Yogurt"};
         breakSideList = new String[] {"Smoothie", "Eggs", "Orange Juice", "Sausage", "Bagels"};
         lunchMainList = new String[] {"Meat Sandwich", "Ramen Noodles", "Burger", "Tacos", "Enchilladas"};
@@ -156,6 +155,7 @@ public class main
             choice = input("Would  you like to add another dish to your meal? \ty/n: ");
             if (choice.equalsIgnoreCase("Y"))
             {
+                menuSize = menuSize + 1;
                 doneYet1 = true;
             }
             else if (choice.equalsIgnoreCase("N"))
@@ -174,7 +174,7 @@ public class main
             System.out.println("\nOption " + (i+1) + " is " + mealsList[i]);
         }
         meals = inputInt("\n\nEnter your option: ");
-        input("\nYou chose option " + meals + " as your meal. Press <return> to continue");
+        input("\nYou chose " + mealsList[meals-1] + " as your meal. Press <return> to continue");
     }
     
     public void pickBreakMain()
@@ -192,15 +192,16 @@ public class main
                 if(choice.equalsIgnoreCase("Y"))
                 {
                     breakMain = breakMainList[i];
-                    donePick1 = true;
                     i = 5;
                     doneYet();
+                    donePick1 = true;
                 }
                 else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
                 {
                     breakMain = breakMainList[i];
                     cl();
                     input("Tough Luck. You are stuck with " + breakMain + " for breakfast. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
                 else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
@@ -232,6 +233,7 @@ public class main
                     breakSide = breakSideList[i];
                     cl();
                     input("Tough Luck. You are stuck with " + breakSide + " for breakfast. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
                 else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
@@ -249,14 +251,25 @@ public class main
             {
                 cl();
                 System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
-                System.out.println("\n\n" + breakMainList[i]);
-                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                System.out.println("\n\n" + lunchMainList[i]);
+                choice = input("\n\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    lunchMain = lunchMainList[i];
+                    donePick1 = true;
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    lunchMain = lunchMainList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + lunchMain + " for lunch. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;          
             }
         }
     }
@@ -270,14 +283,24 @@ public class main
             {
                 cl();
                 System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
-                System.out.println("\n\n" + breakMainList[i]);
-                choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
+                System.out.println("\n\n" + lunchSideList[i]);
+                choice = input("\n\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    lunchSide = lunchSideList[i];
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    lunchSide = lunchSideList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + lunchSide + " for lunch. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;
             }
         }
     }
@@ -291,14 +314,24 @@ public class main
             {
                 cl();
                 System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
-                System.out.println("\n\n" + breakMainList[i]);
+                System.out.println("\n\n" + snacksList[i]);
                 choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    snacks = snacksList[i];
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    snacks = snacksList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + snacks + " for a snack. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;            
             }
         }
     }
@@ -312,14 +345,24 @@ public class main
             {
                 cl();
                 System.out.println("You have " + optionsLeft + " left to choose from. \nIf you do not choose by the last option, you will not get another option.");
-                System.out.println("\n\n" + breakMainList[i]);
+                System.out.println("\n\n" + dinnerMainList[i]);
                 choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    dinnerMain = dinnerMainList[i];
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    dinnerMain = dinnerMainList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + dinnerMain + " for dinner. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;
             }
         }
     }
@@ -337,10 +380,20 @@ public class main
                 choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    dinnerSide = dinnerSideList[i];
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    dinnerSide = dinnerSideList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + dinnerSide + " for dinner. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;
             }
         }
     }
@@ -358,16 +411,28 @@ public class main
                 choice = input("\nIs this a food you would be O.K. with eating?\ty/n: ");
                 if(choice.equalsIgnoreCase("Y"))
                 {
-
+                    dinnerDesert = dinnerDesertList[i];
+                    i = 5;
+                    doneYet();
+                }
+                else if ((choice.equalsIgnoreCase("N"))&&(optionsLeft == 0))
+                {
+                    dinnerDesert = dinnerDesertList[i];
+                    cl();
+                    input("Tough Luck. You are stuck with " + dinnerDesert + " for dissert. \n\nPress <return> to continue.");
+                    doneYet();
                     donePick1 = true;
                 }
-                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft--;                
+                else if(choice.equalsIgnoreCase("N")) optionsLeft = optionsLeft - 1 ;
+                else i = i - 1;         
             }
         }
     }
     
     public void displayMenu()
     {
+        menuList = new String[] {};
+        System.out.println("Here is your menu!\n");
         for (int i = 0; i < menuSize; i++)
         {
             System.out.println("\n" + menuList[i]);
